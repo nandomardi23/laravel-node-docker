@@ -1,0 +1,33 @@
+version: "3.5"
+services:
+  app:
+      container_name: laravel-cashier-app
+      image: laravel-cashier:1.0
+      restart: always
+      tty: true
+      environment:
+      - APP_NAME=Laravel
+      - APP_DEBUG=false 
+
+      - DB_CONNECTION=mysql
+      - DB_HOST=127.0.0.1
+      - DB_PORT=3306
+      - DB_DATABASE=cashier
+      - DB_USERNAME=cashier
+      - DB_PASSWORD=cashier
+      volumes:
+        - 'laravel-cashier:/var/www/laravel-cashier/'
+  web-server:
+      container_name: nginx-cashier
+      image: nginx:latest
+      restart: always
+      tty: true
+      volumes:
+        - /docker/nginx/laravel.conf
+        - 'laravel-cashier:/var/www/laravel-cashier/'
+    
+
+
+volumes:
+  laravel-cashier:
+    driver: local
