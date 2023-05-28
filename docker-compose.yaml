@@ -23,7 +23,7 @@ services:
       restart: always
       tty: true
       volumes:
-        - ./docker/nginx/laravel.conf:/etc/nginx/conf.d/
+        - /docker/nginx/laravel.conf:/etc/nginx/conf.d/
         - 'laravel-cashier:/var/www/laravel-cashier/'
     
 
